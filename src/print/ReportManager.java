@@ -9,6 +9,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
+import print.model.ParameterReportInvoice;
 import print.model.ParameterReportPayment;
 
 public class ReportManager {
@@ -16,6 +17,7 @@ public class ReportManager {
     private static ReportManager instance;
 
     private JasperReport reportPay;
+    private JasperReport reportInvoice;
 
     public static ReportManager getInstance() {
         if (instance == null) {
@@ -29,6 +31,7 @@ public class ReportManager {
 
     public void compileReport() throws JRException {
         reportPay = JasperCompileManager.compileReport(getClass().getResourceAsStream("/print/report_pay.jrxml"));
+        reportInvoice = JasperCompileManager.compileReport(getClass().getResourceAsStream("/print/report_invoice.jrxml"));
     }
 
     public void printReportPayment(ParameterReportPayment data) throws JRException {
@@ -39,6 +42,15 @@ public class ReportManager {
         para.put("qrcode", data.getQrcode());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data.getFields());
         JasperPrint print = JasperFillManager.fillReport(reportPay, para, dataSource);
+        view(print);
+    }
+
+    public void printReportInvoice(ParameterReportInvoice data) throws JRException {
+        Map para = new HashMap();
+        para.put("totalQty", data.getTotalQty());
+        para.put("totalAmount", data.getTotalAmount());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data.getFields());
+        JasperPrint print = JasperFillManager.fillReport(reportInvoice, para, dataSource);
         view(print);
     }
 
