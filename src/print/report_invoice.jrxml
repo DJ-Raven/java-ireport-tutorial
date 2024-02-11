@@ -11,11 +11,59 @@
 			<bottomPen lineWidth="0.5"/>
 			<rightPen lineWidth="0.5"/>
 		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E5E5E5"/>
+		</conditionalStyle>
 	</style>
-	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+	<style name="table_TD" mode="Transparent" backcolor="#FFFFFF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
+	</style>
+	<style name="cell_style">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E5E5E5"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{totalQty}<=5]]></conditionExpression>
+			<style forecolor="#FF3333">
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+			</style>
+		</conditionalStyle>
+	</style>
+	<style name="td_style">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{total}<5]]></conditionExpression>
+			<style forecolor="#FF3333">
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{total}>=20]]></conditionExpression>
+			<style forecolor="#00CC33">
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+			</style>
+		</conditionalStyle>
 	</style>
 	<subDataset name="data" uuid="8dda3de6-efb7-4618-968d-067930d810b5">
 		<field name="productName" class="java.lang.String"/>
@@ -183,7 +231,7 @@
 	<detail>
 		<band height="15" splitType="Prevent">
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="25" height="15" isPrintWhenDetailOverflows="true" uuid="59c98776-18fc-4484-abe3-bfcd89443a0e"/>
+				<reportElement style="cell_style" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="25" height="15" isPrintWhenDetailOverflows="true" uuid="59c98776-18fc-4484-abe3-bfcd89443a0e"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -197,7 +245,7 @@
 				<textFieldExpression><![CDATA[$F{no}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="25" y="0" width="77" height="15" isPrintWhenDetailOverflows="true" uuid="b03a050d-09f0-402a-830e-6caff15fdfcd"/>
+				<reportElement style="cell_style" positionType="Float" stretchType="RelativeToTallestObject" x="25" y="0" width="77" height="15" isPrintWhenDetailOverflows="true" uuid="b03a050d-09f0-402a-830e-6caff15fdfcd"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -211,7 +259,7 @@
 				<textFieldExpression><![CDATA[$F{invoice}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="102" y="0" width="51" height="15" isPrintWhenDetailOverflows="true" uuid="c73da174-7942-4a8c-89b1-fd1c86ba7366"/>
+				<reportElement style="cell_style" positionType="Float" stretchType="RelativeToTallestObject" x="102" y="0" width="51" height="15" isPrintWhenDetailOverflows="true" uuid="c73da174-7942-4a8c-89b1-fd1c86ba7366"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -225,7 +273,7 @@
 				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="153" y="0" width="51" height="15" isPrintWhenDetailOverflows="true" uuid="b5c0a2ed-dd9e-4709-a612-38647bbe3d5c"/>
+				<reportElement style="cell_style" positionType="Float" stretchType="RelativeToTallestObject" x="153" y="0" width="51" height="15" isPrintWhenDetailOverflows="true" uuid="b5c0a2ed-dd9e-4709-a612-38647bbe3d5c"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -239,7 +287,7 @@
 				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="204" y="0" width="51" height="15" isPrintWhenDetailOverflows="true" uuid="e33efd1b-ae6b-4d14-a8e4-acc29ca0ef63"/>
+				<reportElement style="cell_style" positionType="Float" stretchType="RelativeToTallestObject" x="204" y="0" width="51" height="15" isPrintWhenDetailOverflows="true" uuid="e33efd1b-ae6b-4d14-a8e4-acc29ca0ef63"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -253,7 +301,7 @@
 				<textFieldExpression><![CDATA[$F{totalQty}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="$ #,##0.##">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="255" y="0" width="66" height="15" isPrintWhenDetailOverflows="true" uuid="f2643634-06ad-47e3-9010-7488154a8c50"/>
+				<reportElement style="cell_style" positionType="Float" stretchType="RelativeToTallestObject" x="255" y="0" width="66" height="15" isPrintWhenDetailOverflows="true" uuid="f2643634-06ad-47e3-9010-7488154a8c50"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -275,7 +323,7 @@
 					<jr:column width="107" uuid="57fde303-5766-4551-aff9-e538a0da9ce9">
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="107" height="15" isPrintWhenDetailOverflows="true" uuid="8cbc8281-0f0c-4ea1-a1d7-0e273b3ae322"/>
+								<reportElement style="td_style" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="107" height="15" isPrintWhenDetailOverflows="true" uuid="8cbc8281-0f0c-4ea1-a1d7-0e273b3ae322"/>
 								<textElement>
 									<font fontName="Roboto" size="9"/>
 									<paragraph leftIndent="2" spacingBefore="2"/>
@@ -287,7 +335,7 @@
 					<jr:column width="33" uuid="10d1dac0-58a6-4cc5-b56a-1bac0288f51d">
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField isStretchWithOverflow="true" pattern="#,##0">
-								<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="33" height="15" isPrintWhenDetailOverflows="true" uuid="304f771c-e451-40ca-962f-197d51ca3903"/>
+								<reportElement style="td_style" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="33" height="15" isPrintWhenDetailOverflows="true" uuid="304f771c-e451-40ca-962f-197d51ca3903"/>
 								<textElement textAlignment="Center">
 									<font fontName="Roboto" size="9"/>
 									<paragraph spacingBefore="2"/>
@@ -299,7 +347,7 @@
 					<jr:column width="46" uuid="9541d82e-c973-4078-bdb1-0927a4dff9cb">
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField isStretchWithOverflow="true" pattern="$ #,##0.##">
-								<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="46" height="15" isPrintWhenDetailOverflows="true" uuid="23035758-fcbc-4edf-b6b1-1649298f3d57"/>
+								<reportElement style="td_style" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="46" height="15" isPrintWhenDetailOverflows="true" uuid="23035758-fcbc-4edf-b6b1-1649298f3d57"/>
 								<textElement textAlignment="Right">
 									<font fontName="Roboto" size="9"/>
 									<paragraph rightIndent="2" spacingBefore="2"/>
@@ -311,7 +359,7 @@
 					<jr:column width="48" uuid="e28d8443-167a-4daa-85c5-7a8132a9be45">
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField isStretchWithOverflow="true" pattern="$ #,##0.##">
-								<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="48" height="15" isPrintWhenDetailOverflows="true" uuid="f4512637-ef33-469b-bf69-34ff241eb443"/>
+								<reportElement style="td_style" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="48" height="15" isPrintWhenDetailOverflows="true" uuid="f4512637-ef33-469b-bf69-34ff241eb443"/>
 								<textElement textAlignment="Right">
 									<font fontName="Roboto" size="9"/>
 									<paragraph rightIndent="2" spacingBefore="2"/>
