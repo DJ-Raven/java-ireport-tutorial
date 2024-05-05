@@ -106,13 +106,16 @@ public class Test extends javax.swing.JFrame {
 
             pd.setInt(1, invoiceID);
             ResultSet rd = pd.executeQuery();
-            List<FieldReportInvoiceDetail> detail = new ArrayList<>();
-            while (rd.next()) {
-                String product = rd.getString("ProductName");
-                int qty = rd.getInt("Qty");
-                double price = rd.getDouble("Price");
-                double total = rd.getDouble("Total");
-                detail.add(new FieldReportInvoiceDetail(product, qty, price, total));
+            List<FieldReportInvoiceDetail> detail = null;
+            if (rd.next()) {
+                detail = new ArrayList<>();
+                do {
+                    String product = rd.getString("ProductName");
+                    int qty = rd.getInt("Qty");
+                    double price = rd.getDouble("Price");
+                    double total = rd.getDouble("Total");
+                    detail.add(new FieldReportInvoiceDetail(product, qty, price, total));
+                } while (rd.next());
             }
             rd.close();
             fiels.add(new FieldReportInvoice(++no, invoice, date, time, totalQty, totalAmount, detail));
